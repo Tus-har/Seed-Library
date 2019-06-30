@@ -1,0 +1,7 @@
+{
+  "type": "sqlite",
+  "database": "src/data/database.sqlite",
+  "seedsDir": "src/seeds/*{.ts,.js}",
+  "synchronize": false,
+  "entities": ["src/entity/*{.ts,.js}"]
+}
