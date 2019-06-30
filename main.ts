@@ -1,10 +1,8 @@
-import * as yargs from "yargs" ;
-import * as process from "process";
+import yargs from "yargs" ;
+import yargonaut from "yargonaut" ;
 import {SeedRunCommand} from "./commands/SeedRunCommand" ;
 import "reflect-metadata" ;
 
-process.argv.push("seed:run") ;
-process.argv.length = 3 ;
 yargs
     .usage("Usage: $0 <command> [options]")
     .command(new SeedRunCommand())
@@ -16,10 +14,9 @@ yargs
     .alias("h", "help")
     .argv;
 
-require("yargonaut")
+yargonaut
     .style("blue")
     .style("yellow", "required")
     .helpStyle("green")
     .errorsStyle("red");
-
-
+

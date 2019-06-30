@@ -50,7 +50,12 @@ export class SeedRunCommand implements yargs.CommandModule{
 
             let seedClasses = {} ;
             seedFilesDir.map((file) => {
-                seedClasses = {...seedClasses , ...require(file) } ;
+                if (args.name ) {
+                    if (file.includes(args.name + ""))
+                        seedClasses = require(file);
+                }
+                else
+                    seedClasses = {...seedClasses , ...require(file) } ;
             });
 
             let entityClasses = {} ;
@@ -62,8 +67,7 @@ export class SeedRunCommand implements yargs.CommandModule{
 
             for ( const key in seedClasses)
             {
-                const { data= [] , type= "" } = await  (new seedClasses[key]).run() ;
-                console.log(data) ;
+                const { data= [] , type= "" } = await  (new seedClasses[key]()).run() ;
                 await entityClasses[type].save(data);
             }
 
