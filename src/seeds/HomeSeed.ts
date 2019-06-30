@@ -1,17 +1,17 @@
-import {Seeders} from "../../types/Seeders";
+import {ISeeders} from "../../types/ISeeders";
 import {Home} from "../entity/Home";
 
-export class HomeSeed implements Seeders<Home>{
-    async run ( ): Promise< { data: Home[] , type: string}> {
+export class HomeSeed implements ISeeders<Home>{
+    async run ( ): Promise<Home[]> {
         const homes = [] ;
         for (let i = 0 ; i < 1 ; i++){
-            const home = {
+            const home = Home.create({
                 name : "home1" ,
                 location : "gurgaon"
-            };
+            });
             homes.push(home) ;
         }
 
-        return  { data: homes , type : "Home"} ;
+        return  homes ;
     }
 }

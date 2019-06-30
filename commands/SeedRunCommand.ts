@@ -67,8 +67,8 @@ export class SeedRunCommand implements yargs.CommandModule{
 
             for ( const key in seedClasses)
             {
-                const { data= [] , type= "" } = await  (new seedClasses[key]()).run() ;
-                await entityClasses[type].save(data);
+                const data = await  (new seedClasses[key]()).run() ;
+                await data[0].save() ;
             }
 
         } catch (err) {
